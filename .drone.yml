@@ -1,0 +1,50 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: test
+  image: node
+  commands:
+  - npm install
+  - npm test
+  when:
+    branch:
+    - master
+    - develop
+    - feature/*
+    event:
+    - push
+    - pull_request
+    - tag
+
+- name: build
+  image: node
+  commands:
+  - npm run build
+  environment:
+    REACT_APP_API_SERVER:
+      from_secret: REACT_APP_API_SERVER
+    REACT_APP_API_REQ_NEW_REGISTER:
+      from_secret: REACT_APP_API_REQ_NEW_REGISTER
+    REACT_APP_API_REQ_NEWS:
+      from_secret: REACT_APP_API_REQ_NEWS
+    REACT_APP_API_REQ_NEWS_ARTICLE:
+      from_secret: REACT_APP_API_REQ_NEWS_ARTICLE
+    REACT_APP_API_REQ_OPTIONS:
+      from_secret: REACT_APP_API_REQ_OPTIONS
+    REACT_APP_API_ADMIN_SERVER:
+      from_secret: REACT_APP_API_ADMIN_SERVER
+    REACT_APP_API_ADMIN_REQ_LOGIN:
+      from_secret: REACT_APP_API_ADMIN_REQ_LOGIN
+    REACT_APP_API_ADMIN_REQ_NEWS:
+      from_secret: REACT_APP_API_ADMIN_REQ_NEWS
+    REACT_APP_API_ADMIN_REQ_NEWS_ARTICLE:
+      from_secret: REACT_APP_API_ADMIN_REQ_NEWS_ARTICLE
+    REACT_APP_API_ADMIN_REQ_OPTIONS:
+      from_secret: REACT_APP_API_ADMIN_REQ_OPTIONS
