@@ -24,7 +24,8 @@ export default class Applicant extends React.Component {
       address: '',
       appointment: '',
       notified: '',
-      reNotified: false
+      reNotified: false,
+      attended: false
     }
 
     this.context.set('loading', true, () => {
@@ -90,6 +91,7 @@ export default class Applicant extends React.Component {
           address: response.data.data.address,
           appointment: response.data.data.appointment,
           notified: response.data.data.notified,
+          attended: response.data.data.attended,
         })
 
         this.context.set('loading', false)
@@ -121,6 +123,7 @@ export default class Applicant extends React.Component {
     data.append("email", this.state.email);
     data.append("phone", this.state.phone);
     data.append("reNotified", this.state.reNotified);
+    data.append("attended", this.state.attended);
 
     const link = process.env.REACT_APP_API_ADMIN_REQ_APPLICANT.toString().replace(':id', this.props.match.params.id)
 
@@ -139,7 +142,8 @@ export default class Applicant extends React.Component {
           phone: response.data.data.phone,
           appointment: response.data.data.appointment,
           notified: response.data.data.notified,
-          reNotified: false
+          reNotified: false,
+          attended: response.data.data.attended
         })
       }
     })
@@ -278,7 +282,7 @@ export default class Applicant extends React.Component {
             </div>
 
             <div className="input-wrapper">
-              <label htmlFor="status">
+              <label>
                 Értesítő
               </label>
               <div>
@@ -291,7 +295,7 @@ export default class Applicant extends React.Component {
             </div>
 
             <div className="input-wrapper">
-              <label htmlFor="status">
+              <label>
                 Értesítő újraküldés
                 <Loader onClick={() => { this.setState({ reNotified: ! this.state.reNotified }) }} style={{ width: 16, height: 16, marginLeft: 6, cursor: 'pointer' }} />
               </label>
@@ -301,6 +305,20 @@ export default class Applicant extends React.Component {
 
               {this.state.error && this.state.error.reNotified ? Object.values(this.state.error.reNotified).map((err, i) => {
                 return <this.ErrorMini key={i} error={err} increment={`reNotified-${i}`} />
+              }) : null}
+            </div>
+
+            <div className="input-wrapper">
+              <label>
+                Résztvett
+                <Loader onClick={() => { this.setState({ attended: ! this.state.attended }) }} style={{ width: 16, height: 16, marginLeft: 6, cursor: 'pointer' }} />
+              </label>
+              <div>
+                {this.state.attended ? 'Igen' : 'Nem'}
+              </div>
+
+              {this.state.error && this.state.error.attended ? Object.values(this.state.error.attended).map((err, i) => {
+                return <this.ErrorMini key={i} error={err} increment={`attended-${i}`} />
               }) : null}
             </div>
 
