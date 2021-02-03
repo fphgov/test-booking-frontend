@@ -13,6 +13,8 @@ import Dashboard from "./page/Dashboard";
 import Login from "./page/Login";
 import Logout from "./page/Logout";
 import Applicants from "./page/Applicants";
+import Check from "./page/Check";
+import Checks from "./page/Checks";
 import Applicant from "./page/Applicant";
 import ScrollToTop from "./common/ScrollToTop";
 
@@ -31,6 +33,8 @@ export default class App extends React.Component {
                 <Route exact path="/logout" component={Logout} />
                 <Route exact path="/applicants" component={Applicants} />
                 <Route exact path="/applicants/:id" component={Applicant} />
+                <Route exact path="/checks" component={Checks} />
+                <Route exact path="/checks/:id" component={Check} />
 
                 <Route exact path="*" component={NotFound} />
               </Switch>

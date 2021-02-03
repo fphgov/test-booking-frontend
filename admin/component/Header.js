@@ -34,6 +34,7 @@ export default class Header extends React.Component {
       openMenu: false,
       menu: [
         { title: "Jelentkezettek", href: "/applicants", onHideLoggedOut: true },
+        { title: "Időpont ellenőrzés", href: "/checks", onHideLoggedOut: true },
         { title: "Bejelentkezés", href: "/login", onHideLoggedIn: true },
         { title: "Kijelentkezés", href: "/logout", onHideLoggedOut: true },
       ]
