@@ -5,7 +5,7 @@ A Főváros Önkormányzata által létrehozott, koronavírus gyorstesztelés me
 #### Telepítés
 Az `.env.example` fájlt le kell másolni és az új fájlnak a neve `.env` legyen. Ebbe lehet definiálni a környezeti változókat.
 
-A telepítéshez és a használathoz, használható Docker, de nem követelmény. Amennyiben a helyi gépre telepítve van a Node.js 14-es verzió, úgy egyszerűen az `npm install` parancssal, feltelepülnek a függőségek. Az `npm start` paranccsal elindul a webpack által inditított szerver, alapból a `8080`-as porton. Amennyiben már éles környzetbe kell a kód, úgy `npm run build` parancsot kell kiadni és a `public` mappában lesznek találhatóak a statikus fájlok, amik a megjelenésért felelnek.
+A telepítéshez és a használathoz, használható Docker, de nem követelmény. Abban az esetben, ha nem Docker segítségével tesztelné a webalkalmazást, a webpack.config.js fájlban a host: '0.0.0.0' -> host: 'localhost'-ra cserélendő. Amennyiben a helyi gépre telepítve van a Node.js 14-es verzió, úgy egyszerűen az `npm install` parancssal, feltelepülnek a függőségek. Az `npm start` paranccsal elindul a webpack által inditított szerver, alapból a `8080`-as porton. Amennyiben már éles környzetbe kell a kód, úgy `npm run build` parancsot kell kiadni és a `public` mappában lesznek találhatóak a statikus fájlok, amik a megjelenésért felelnek.
 
 #### Docker telepítés
 
