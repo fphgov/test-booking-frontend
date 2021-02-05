@@ -12,6 +12,8 @@ const MobileMenu = (props) => {
           {props.menu.map((menuItem, i) => {
             if (menuItem.onHideLoggedIn === true && localStorage.getItem('auth_token')) return;
 
+            if (Array.isArray(menuItem.roles) && ! menuItem.roles.includes(this.context.get('role'))) return;
+
             return (
               <li key={i.toString()}>
                 <Link to={menuItem.href}>{menuItem.title}</Link>
@@ -33,7 +35,8 @@ export default class Header extends React.Component {
     this.state = {
       openMenu: false,
       menu: [
-        { title: "Jelentkezettek", href: "/applicants", onHideLoggedOut: true },
+        { title: "Jelentkezettek", href: "/applicants", onHideLoggedOut: true, roles: ['developer', 'admin', 'cs'] },
+        { title: "Időpont ellenőrzés", href: "/checks", onHideLoggedOut: true, roles: ['developer', 'admin', 'voluntary'] },
         { title: "Bejelentkezés", href: "/login", onHideLoggedIn: true },
         { title: "Kijelentkezés", href: "/logout", onHideLoggedOut: true },
       ]
@@ -80,6 +83,8 @@ export default class Header extends React.Component {
                       menuItem.onHideLoggedIn === true && localStorage.getItem('auth_token') !== null ||
                       menuItem.onHideLoggedOut === true && localStorage.getItem('auth_token') === null
                     ) return;
+
+                    if (Array.isArray(menuItem.roles) && ! menuItem.roles.includes(this.context.get('role'))) return;
 
                     return (
                       <li key={i.toString()}>

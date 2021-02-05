@@ -269,6 +269,16 @@ nav.main-navigation ul {
   color: #fff;
 }
 
+.btn.btn-info {
+  background-color: #efefef;
+  color: black;
+  text-align: center;
+  align-items: flex-start;
+  appearance: auto;
+  line-height: normal;
+  margin-top: 30px;
+}
+
 .hero-links-wrapper a {
   text-decoration: underline;
   font-weight: bold;

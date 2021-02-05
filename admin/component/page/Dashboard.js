@@ -212,27 +212,31 @@ export default class Dashboard extends React.Component {
             </div>
 
             <div className="box-right">
-              <div className="box box-button" onClick={this.handleExport.bind(this)}>Jelentkezők exportálása</div>
+              {['developer', 'admin'].includes(this.context.get('role')) ? (
+                <div className="box box-button" onClick={this.handleExport.bind(this)}>Jelentkezők exportálása</div>
+               ) : null}
             </div>
           </div>
 
           <div className="section"></div>
 
-          <div className="form">
-            <div className="input-wrapper">
-              <label htmlFor="close">
-                <input type="checkbox" name="close" id="close" checked={this.state.close} onChange={this.handleChangeInput.bind(this)} />
+          {['developer', 'admin'].includes(this.context.get('role')) ? (
+            <div className="form">
+                <div className="input-wrapper">
+                  <label htmlFor="close">
+                    <input type="checkbox" name="close" id="close" checked={this.state.close} onChange={this.handleChangeInput.bind(this)} />
 
-                A jelentkezés lezárása
-              </label>
+                    A jelentkezés lezárása
+                  </label>
 
-              {this.state.error && this.state.error.close ? Object.values(this.state.error.close).map((err, i) => {
-                return <this.ErrorMini error={err} increment={i} />
-              }) : null}
+                  {this.state.error && this.state.error.close ? Object.values(this.state.error.close).map((err, i) => {
+                    return <this.ErrorMini error={err} increment={i} />
+                  }) : null}
+                </div>
+
+              <input type="submit" value="Beállítások mentése" className="btn btn-primary" onClick={this.submitForm.bind(this)} />
             </div>
-
-            <input type="submit" value="Beállítások mentése" className="btn btn-primary" onClick={this.submitForm.bind(this)} />
-          </div>
+          ) : null}
         </div>
       </div>
     )

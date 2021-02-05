@@ -1,10 +1,12 @@
 import axios from "axios"
 import React from "react"
 import qs from 'querystring'
+import jwtDecode from "jwt-decode"
 import {
   Redirect,
 } from "react-router-dom"
 import StoreContext from '../../StoreContext'
+
 
 export default class Login extends React.Component {
   static contextType = StoreContext
@@ -48,6 +50,12 @@ export default class Login extends React.Component {
           localStorage.setItem('auth_token', response.data.token)
 
           this.context.set('token', localStorage.getItem('auth_token') || '')
+
+          const decodedJwt = jwtDecode(this.context.get('token'))
+
+          this.context.set('role', decodedJwt.user.role || '')
+
+          this.forceUpdate()
 
           setTimeout(() => {
             this.setState({
