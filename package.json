@@ -43,6 +43,7 @@
     "draft-js-import-html": "^1.4.1",
     "draft-js-plugins-editor": "^3.0.0",
     "draft-js-static-toolbar-plugin": "^3.0.1",
+    "jwt-decode": "^3.1.2",
     "normalize.css": "^8.0.1",
     "querystring": "^0.2.0",
     "react": "^16.14.0",

@@ -225,7 +225,7 @@ export default class Check extends React.Component {
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               {! this.state.attended ? <input type="submit" value="Részt vett" className="btn btn-primary" onClick={this.submitApplicant.bind(this)} /> : <div />}
 
-              <Link to={`/applicants/${this.state.id}`} className="btn btn-info">Szerkesztés</Link>
+              {['developer', 'admin', 'cs'].includes(this.context.get('role')) ? <Link to={`/applicants/${this.state.id}`} className="btn btn-info">Szerkesztés</Link> : null}
             </div>
           </div>
         </div>
