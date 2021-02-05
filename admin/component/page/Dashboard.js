@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "../assets/axios"
 import qs from 'querystring'
 import React from "react"
 import {

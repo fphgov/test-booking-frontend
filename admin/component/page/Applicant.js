@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "../assets/axios"
 import React from "react"
 import {
   Redirect,

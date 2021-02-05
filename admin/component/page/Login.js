@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "../assets/axios"
 import React from "react"
 import qs from 'querystring'
 import jwtDecode from "jwt-decode"
@@ -6,7 +6,6 @@ import {
   Redirect,
 } from "react-router-dom"
 import StoreContext from '../../StoreContext'
-
 
 export default class Login extends React.Component {
   static contextType = StoreContext
