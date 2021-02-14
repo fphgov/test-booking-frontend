@@ -3,6 +3,7 @@ import {
   Link,
 } from "react-router-dom";
 import StoreContext from '../StoreContext'
+import tokenParser from './assets/tokenParser'
 
 const MobileMenu = (props) => {
   return (
@@ -12,7 +13,7 @@ const MobileMenu = (props) => {
           {props.menu.map((menuItem, i) => {
             if (menuItem.onHideLoggedIn === true && localStorage.getItem('auth_token')) return;
 
-            if (Array.isArray(menuItem.roles) && ! menuItem.roles.includes(this.context.get('role'))) return;
+            if (Array.isArray(menuItem.roles) && !menuItem.roles.includes(tokenParser('user.role'))) return;
 
             return (
               <li key={i.toString()}>
@@ -35,8 +36,8 @@ export default class Header extends React.Component {
     this.state = {
       openMenu: false,
       menu: [
-        { title: "Jelentkezettek", href: "/applicants", onHideLoggedOut: true, roles: ['developer', 'admin', 'cs'] },
-        { title: "Időpont ellenőrzés", href: "/checks", onHideLoggedOut: true, roles: ['developer', 'admin', 'voluntary'] },
+        { title: "Jelentkezettek", href: "/applicants", onHideLoggedOut: true, roles: [ 'developer', 'admin', 'cs' ] },
+        { title: "Időpont ellenőrzés", href: "/checks", onHideLoggedOut: true, roles: [ 'developer', 'admin', 'voluntary' ] },
         { title: "Bejelentkezés", href: "/login", onHideLoggedIn: true },
         { title: "Kijelentkezés", href: "/logout", onHideLoggedOut: true },
       ]
@@ -45,7 +46,7 @@ export default class Header extends React.Component {
 
   toggleMenu() {
     this.setState({
-      openMenu: !this.state.openMenu,
+      openMenu: ! this.state.openMenu,
     })
   }
 
@@ -84,7 +85,7 @@ export default class Header extends React.Component {
                       menuItem.onHideLoggedOut === true && localStorage.getItem('auth_token') === null
                     ) return;
 
-                    if (Array.isArray(menuItem.roles) && ! menuItem.roles.includes(this.context.get('role'))) return;
+                    if (Array.isArray(menuItem.roles) && !menuItem.roles.includes(tokenParser('user.role'))) return;
 
                     return (
                       <li key={i.toString()}>
@@ -108,7 +109,7 @@ export default class Header extends React.Component {
 
         {this.state.openMenu ? <MobileMenu menu={this.state.menu} /> : null}
 
-        { this.props.children}
+        { this.props.children }
       </header>
     )
   }

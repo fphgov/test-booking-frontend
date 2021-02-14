@@ -5,6 +5,7 @@ import {
   Redirect,
 } from "react-router-dom"
 import StoreContext from '../../StoreContext'
+import tokenParser from '../assets/tokenParser'
 
 export default class Dashboard extends React.Component {
   static contextType = StoreContext
@@ -212,7 +213,7 @@ export default class Dashboard extends React.Component {
             </div>
 
             <div className="box-right">
-              {['developer', 'admin'].includes(this.context.get('role')) ? (
+              {['developer', 'admin'].includes(tokenParser('user.role')) ? (
                 <div className="box box-button" onClick={this.handleExport.bind(this)}>Jelentkezők exportálása</div>
                ) : null}
             </div>
@@ -220,7 +221,7 @@ export default class Dashboard extends React.Component {
 
           <div className="section"></div>
 
-          {['developer', 'admin'].includes(this.context.get('role')) ? (
+          {['developer', 'admin'].includes(tokenParser('user.role')) ? (
             <div className="form">
                 <div className="input-wrapper">
                   <label htmlFor="close">

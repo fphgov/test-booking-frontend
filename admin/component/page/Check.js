@@ -5,6 +5,7 @@ import {
   Link,
 } from "react-router-dom"
 import StoreContext from '../../StoreContext'
+import tokenParser from '../assets/tokenParser'
 
 export default class Check extends React.Component {
   static contextType = StoreContext
@@ -225,7 +226,7 @@ export default class Check extends React.Component {
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               {! this.state.attended ? <input type="submit" value="Részt vett" className="btn btn-primary" onClick={this.submitApplicant.bind(this)} /> : <div />}
 
-              {['developer', 'admin', 'cs'].includes(this.context.get('role')) ? <Link to={`/applicants/${this.state.id}`} className="btn btn-info">Szerkesztés</Link> : null}
+              {['developer', 'admin', 'cs'].includes(tokenParser('user.role')) ? <Link to={`/applicants/${this.state.id}`} className="btn btn-info">Szerkesztés</Link> : null}
             </div>
           </div>
         </div>
