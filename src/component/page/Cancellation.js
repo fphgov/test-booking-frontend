@@ -90,7 +90,7 @@ export default function Cancellation() {
         {error ? <ScrollTo element={document.querySelector('.form-scroll').offsetTop}><Error message={error} /></ScrollTo> : null}
         {success ? <Success /> : null}
 
-        <input type="submit" value="Lemondás" className="btn btn-primary" onClick={submitCancel} />
+        {! success ? <input type="submit" value="Lemondás" className="btn btn-primary" onClick={submitCancel} /> : null}
       </div>
     </div>
   )
