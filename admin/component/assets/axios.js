@@ -1,5 +1,9 @@
 import axios from "axios"
 
+axios.defaults.validateStatus = function (status) {
+  return status != 200
+}
+
 axios.interceptors.response.use(response => {
    return response
 }, error => {

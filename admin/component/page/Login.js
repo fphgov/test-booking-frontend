@@ -73,6 +73,16 @@ export default class Login extends React.Component {
 
             this.context.set('loading', false)
           }, 1000)
+
+          if (response.status !== 200 && response.data && response.data.message) {
+            this.setState({
+              error: response.data.message
+            })
+
+            localStorage.removeItem('auth_token')
+          }
+
+          this.context.set('loading', false)
         }
       })
       .catch(error => {
@@ -82,7 +92,7 @@ export default class Login extends React.Component {
           })
         }
 
-        localStorage.removeItem('auth_token',)
+        localStorage.removeItem('auth_token')
 
         this.context.set('loading', false)
       })
