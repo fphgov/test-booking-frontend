@@ -154,12 +154,49 @@ export default class Dashboard extends React.Component {
       const link = document.createElement('a');
 
       link.href = url;
-      link.setAttribute('download', `export-${(new Date()) - 0}.csv`);
+      link.setAttribute('download', `export-${(new Date()) - 0}.xlsx`);
 
       document.body.appendChild(link);
 
       link.click();
 
+      this.context.set('loading', false)
+    })
+    .catch(error => {
+      if (error.response && error.response.status === 401) {
+        this.setState({
+          redirectLogin: true
+        })
+
+        this.context.set('loading', false)
+
+        return
+      }
+
+      if (error.response && error.response.data && error.response.data.errors) {
+        this.setState({
+          error: error.response.data.errors
+        })
+      }
+
+      this.context.set('loading', false)
+    })
+  }
+
+  handleCacheClear() {
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('auth_token')}`,
+      },
+    }
+
+    this.context.set('loading', true)
+
+    axios.get(
+      process.env.REACT_APP_API_ADMIN_SERVER + process.env.REACT_APP_API_ADMIN_REQ_CACHE_CLEAR,
+      config
+    )
+    .then(() => {
       this.context.set('loading', false)
     })
     .catch(error => {
@@ -234,6 +271,14 @@ export default class Dashboard extends React.Component {
                     return <this.ErrorMini error={err} increment={i} />
                   }) : null}
                 </div>
+
+              {[ 'developer', 'admin' ].includes(tokenParser('user.role')) ? (
+                <div className="box-left">
+                  <div className="input-wrapper">
+                    <div className="box box-button" onClick={this.handleCacheClear.bind(this)}>Gyorsítótár ürítés</div>
+                  </div>
+                </div>
+              ) : null}
 
               <input type="submit" value="Beállítások mentése" className="btn btn-primary" onClick={this.submitForm.bind(this)} />
             </div>
