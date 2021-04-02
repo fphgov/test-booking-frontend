@@ -1,9 +1,5 @@
 import axios from "axios"
 
-axios.defaults.validateStatus = function (status) {
-  return status != 200
-}
-
 axios.interceptors.response.use(response => {
    return response
 }, error => {
@@ -14,7 +10,7 @@ axios.interceptors.response.use(response => {
     window.location.hash = '#/login'
   }
 
-  return error
+  return Promise.reject(error)
 })
 
 export default axios
