@@ -122,6 +122,12 @@ export default class Registration extends React.Component {
         if (response.data && response.data.data) {
           this.setState({
             appointments: response.data.data,
+          }, () => {
+            if (document.querySelector('a.appointment-elem.active.locked') && typeof document.documentElement.scrollIntoViewIfNeeded !== "undefined") {
+              document.querySelector('a.appointment-elem.active.locked').scrollIntoViewIfNeeded()
+            } else if (document.querySelector('a.appointment-elem.active.locked') && typeof document.documentElement.scrollIntoView !== "undefined") {
+              document.querySelector('a.appointment-elem.active.locked').scrollIntoView()
+            }
           })
 
           this.setState({
