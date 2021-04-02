@@ -312,7 +312,7 @@ export default class Dashboard extends React.Component {
                 <input type="submit" value="Beállítások mentése" className="btn btn-primary" onClick={this.submitForm.bind(this)} />
               </div>
             </>
-          ) : <div>Sikeres bejelentkezés. Válasszon a menüpontok közül.</div>}
+          ) : <div>Válasszon a menüpontok közül.</div>}
         </div>
       </div>
     )
