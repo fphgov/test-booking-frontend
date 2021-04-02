@@ -4,7 +4,6 @@ import {
   Link,
   Redirect
 } from "react-router-dom"
-import { DebounceInput } from 'react-debounce-input'
 import StoreContext from '../../StoreContext'
 
 export default class Applicants extends React.Component {
@@ -40,14 +39,9 @@ export default class Applicants extends React.Component {
   }
 
   handleChangeInput(e) {
-    this.setState({ search: e.target.value }, () => {
-      if (this.state.search === '') {
-        this.setState({
-          applicants: []
-        })
-      } else {
-        this.getApplicantsData()
-      }
+    this.setState({
+      search: e.target.value,
+      applicants: []
     })
   }
 
@@ -143,13 +137,10 @@ export default class Applicants extends React.Component {
         <div className="container">
           <h1>Jelentkezettek</h1>
 
-          <DebounceInput
-            autoComplete="chrome-off"
-            name="search"
-            minLength={2}
-            debounceTimeout={300}
-            value={this.state.search}
-            onChange={this.handleChangeInput.bind(this)} />
+          <div className="search-wrapper">
+            <input autoComplete="chrome-off" name="search" value={this.state.search} onChange={this.handleChangeInput.bind(this)} />
+            <button className="btn btn-primary" onClick={this.getApplicantsData.bind(this)}>Keresés</button>
+          </div>
 
           <div className="row">
             {this.state.applicants.map((applicants, i) => <this.ApplicantsWrapper key={i} applicants={applicants} />)}

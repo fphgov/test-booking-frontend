@@ -1009,6 +1009,19 @@ input[name="search"] {
   padding: 5px 0 0 0;
 }
 
+.search-wrapper {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.search-wrapper > input {
+  margin: 0;
+}
+
+.search-wrapper input + .btn {
+  margin-left: 20px;
+}
+
 @media screen and (max-width: 991px) {
   .desktop-menu {
     display: none;
