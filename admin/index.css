@@ -441,7 +441,7 @@ article.news-box-elem {
 }
 
 .hamburger-menu>.hamburger-menu-elem {
-  background-color: #fff;
+  background-color: #fce65d;
   height: 4px;
   margin-bottom: 4px;
 }
@@ -883,6 +883,7 @@ input[name="search"] {
 .section {
   height: 1px;
   margin: 16px 0;
+  background-color: #efefef;
 }
 
 .box-wrapper {
@@ -924,13 +925,88 @@ input[name="search"] {
   align-items: center;
 }
 
-.box-right > .box {
+.box-right .box {
   margin-right: 0;
   margin-left: 20px;
 }
 
 .box span {
   font-weight: bold;
+}
+
+.box-right .input-wrapper {
+  margin-bottom: 0;
+}
+
+.stat-wrappers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.stat-wrapper {
+  min-width: 33%;
+  margin-bottom: 20px;
+  padding: 5px;
+}
+
+.stat-wrapper .stat-day {
+  font-weight: bold;
+  background-color: #fce65d;
+  padding: 5px;
+  text-align: center;
+}
+
+.stat-wrapper .stats {
+  padding: 5px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.stat-wrapper .stats .stat-row {
+  padding: 0 5px;
+}
+
+.stat-wrapper .stats .stat-elem {
+  text-align: center;
+}
+
+.stat-wrapper .stats .stat-elem.stat-hour {
+  font-weight: bold;
+  border-bottom: 1px solid #19506e;
+}
+
+.stat-wrapper .stats .stat-row:nth-child(even) {
+  background-color: #efefef;
+}
+
+.stat-wrapper .stats .stat-elem.stat-sum.stat-eq-0 {
+  color: lightgreen;
+  font-weight: bold;
+}
+
+.stat-wrapper .stats .stat-elem.stat-sum:not(.stat-eq-0) {
+  color: orange;
+  font-weight: bold;
+}
+
+.stat-wrappers .stat-places {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.stat-wrappers .stat-places .stat-place {
+  width: 100%;
+  background-color: #19506e;
+  color: #fff;
+  padding: 5px;
+  font-weight: bold;
+}
+
+.stat-wrappers .stat-places .stat-wrapper {
+  padding: 0;
+  padding: 5px 0 0 0;
 }
 
 @media screen and (max-width: 991px) {

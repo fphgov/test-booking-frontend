@@ -77,6 +77,8 @@ export default class Applicant extends React.Component {
       }
     }
 
+    this.context.set('loading', true)
+
     const link = process.env.REACT_APP_API_ADMIN_REQ_APPLICANT.toString().replace(':id', this.props.match.params.id)
 
     axios.get(process.env.REACT_APP_API_ADMIN_SERVER + link, config)
@@ -103,11 +105,15 @@ export default class Applicant extends React.Component {
           error: error.response.data.message
         })
       }
+
+      this.context.set('loading', false)
     })
   }
 
   submitApplicant(e) {
     e.preventDefault();
+
+    this.context.set('loading', true)
 
     const config = {
       headers: {
@@ -146,6 +152,8 @@ export default class Applicant extends React.Component {
           attended: response.data.data.attended
         })
       }
+
+      this.context.set('loading', false)
     })
     .catch(error => {
       if (error.response && error.response.data && error.response.data.errors) {
@@ -160,6 +168,8 @@ export default class Applicant extends React.Component {
 
   removeApplicant(e) {
     e.preventDefault();
+
+    this.context.set('loading', true)
 
     const config = {
       headers: {
