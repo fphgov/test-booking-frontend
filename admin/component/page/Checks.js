@@ -71,7 +71,8 @@ export default class Checks extends React.Component {
 
         if (error.response && error.response.data && error.response.data.message) {
           this.setState({
-            error: error.response.data.message
+            error: error.response.data.message,
+            applicants: []
           })
         }
       })

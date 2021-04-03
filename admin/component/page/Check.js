@@ -19,7 +19,7 @@ export default class Check extends React.Component {
       redirectLogin: false,
       id: null,
       humanId: '',
-      address: '',
+      location: '',
       appointment: '',
       notified: '',
       attended: false
@@ -82,7 +82,9 @@ export default class Check extends React.Component {
         this.setState({
           id: response.data.data.id,
           humanId: response.data.data.humanId,
-          address: response.data.data.address,
+          firstname: response.data.data.firstname,
+          lastname: response.data.data.lastname,
+          location: response.data.data.location,
           appointment: response.data.data.appointment,
           notified: response.data.data.notified,
           attended: response.data.data.attended,
@@ -124,7 +126,11 @@ export default class Check extends React.Component {
     .then(response => {
       if (response.data) {
         this.setState({
+          id: response.data.data.id,
           humanId: response.data.data.humanId,
+          firstname: response.data.data.firstname,
+          lastname: response.data.data.lastname,
+          location: response.data.data.location,
           appointment: response.data.data.appointment,
           notified: response.data.data.notified,
           attended: response.data.data.attended
@@ -180,8 +186,26 @@ export default class Check extends React.Component {
 
           <div className="form-wrapper">
             <div className="input-wrapper">
+              <label htmlFor="lastname">Családnév</label>
+              <input type="text" disabled name="lastname" id="lastname" value={this.state.lastname} />
+
+              {this.state.error && this.state.error.lastname ? Object.values(this.state.error.lastname).map((err, i) => {
+                return <this.ErrorMini key={i} error={err} increment={`lastname-${i}`} />
+              }) : null}
+            </div>
+
+            <div className="input-wrapper">
+              <label htmlFor="humanId">Utónév</label>
+              <input type="text" disabled name="firstname" id="firstname" value={this.state.firstname} />
+
+              {this.state.error && this.state.error.firstname ? Object.values(this.state.error.firstname).map((err, i) => {
+                return <this.ErrorMini key={i} error={err} increment={`firstname-${i}`} />
+              }) : null}
+            </div>
+
+            <div className="input-wrapper">
               <label htmlFor="appointment">Időpont</label>
-              <input type="text" disabled name="appointment" id="appointment" value={this.state.appointment.date ? this.state.appointment.date.date : ''} onChange={this.handleChangeInput.bind(this)} />
+              <input type="text" disabled name="appointment" id="appointment" value={this.state.appointment} />
 
               {this.state.error && this.state.error.appointment ? Object.values(this.state.error.appointment).map((err, i) => {
                 return <this.ErrorMini key={i} error={err} increment={`appointment-${i}`} />
@@ -189,11 +213,11 @@ export default class Check extends React.Component {
             </div>
 
             <div className="input-wrapper">
-              <label htmlFor="address">Helyszín</label>
-              <input type="text" disabled name="address" id="address" value={this.state.address} onChange={this.handleChangeInput.bind(this)} />
+              <label htmlFor="location">Helyszín</label>
+              <input type="text" disabled name="location" id="location" value={this.state.location} />
 
-              {this.state.error && this.state.error.address ? Object.values(this.state.error.address).map((err, i) => {
-                return <this.ErrorMini key={i} error={err} increment={`address-${i}`} />
+              {this.state.error && this.state.error.location ? Object.values(this.state.error.location).map((err, i) => {
+                return <this.ErrorMini key={i} error={err} increment={`location-${i}`} />
               }) : null}
             </div>
 
