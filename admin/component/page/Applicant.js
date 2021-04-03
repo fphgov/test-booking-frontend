@@ -24,6 +24,7 @@ export default class Applicant extends React.Component {
       address: '',
       appointment: '',
       notified: '',
+      attended: false,
       reNotified: false
     }
 
@@ -90,6 +91,7 @@ export default class Applicant extends React.Component {
             address: response.data.data.address,
             appointment: response.data.data.appointment,
             notified: response.data.data.notified,
+            attended: response.data.data.attended,
           })
 
           this.context.set('loading', false)
@@ -143,6 +145,7 @@ export default class Applicant extends React.Component {
             phone: response.data.data.phone,
             appointment: response.data.data.appointment,
             notified: response.data.data.notified,
+            attended: response.data.data.attended,
             reNotified: false
           })
         }
@@ -328,11 +331,27 @@ export default class Applicant extends React.Component {
                   }) : null}
                 </div>
               </div>
+
+              <div className="col-md-3">
+                <div className="input-wrapper">
+                  <label>
+                    Résztvett
+                  </label>
+                  <div>
+                    {this.state.attended ? 'Igen' : 'Nem'}
+                  </div>
+
+                  {this.state.error && this.state.error.attended ? Object.values(this.state.error.attended).map((err, i) => {
+                    return <this.ErrorMini key={i} error={err} increment={`attended-${i}`} />
+                  }) : null}
+                </div>
+              </div>
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <input type="submit" value="Mentés" className="btn btn-primary" onClick={this.submitApplicant.bind(this)} />
-              <input type="submit" value="Törlés" className="btn btn-danger" onClick={this.removeApplicant.bind(this)} />
+
+              {! this.state.attended ? <input type="submit" value="Törlés" className="btn btn-danger" onClick={this.removeApplicant.bind(this)} /> : null}
             </div>
           </div>
         </div>
