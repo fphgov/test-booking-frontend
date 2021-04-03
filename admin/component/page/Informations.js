@@ -2,7 +2,6 @@ import axios from "../assets/axios"
 import React from "react"
 import {
   Redirect,
-  Link,
 } from "react-router-dom"
 import StoreContext from '../../StoreContext'
 
@@ -31,11 +30,11 @@ export default class Informations extends React.Component {
       })
     }
 
-    document.body.classList.add('page-new-article')
+    document.body.classList.add('page-new-informations')
   }
 
   componentWillUnmount() {
-    document.body.classList.remove('page-new-article')
+    document.body.classList.remove('page-new-informations')
   }
 
   getApplicantData() {

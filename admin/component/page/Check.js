@@ -37,11 +37,11 @@ export default class Check extends React.Component {
       })
     }
 
-    document.body.classList.add('page-new-article')
+    document.body.classList.add('page-new-check')
   }
 
   componentWillUnmount() {
-    document.body.classList.remove('page-new-article')
+    document.body.classList.remove('page-new-check')
   }
 
   handleChangeInput(e) {

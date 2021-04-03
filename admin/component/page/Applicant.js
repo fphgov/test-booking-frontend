@@ -39,11 +39,11 @@ export default class Applicant extends React.Component {
       })
     }
 
-    document.body.classList.add('page-new-article')
+    document.body.classList.add('page-new-applicant')
   }
 
   componentWillUnmount() {
-    document.body.classList.remove('page-new-article')
+    document.body.classList.remove('page-new-applicant')
   }
 
   handleChangeInput(e) {
