@@ -146,7 +146,7 @@ export default class Dashboard extends React.Component {
     const config = {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('auth_token')}`,
-        'Accept': 'text/csv',
+        'Accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
       },
       responseType: 'blob'
     }

@@ -97,12 +97,10 @@ export default class Informations extends React.Component {
       return <Redirect to='/login' />
     }
 
-    const sepPlace = this.groupBy(this.state.appointments, 'pId');
-
     return (
       <div className="proposal">
         <div className="container">
-          <h1>Információk</h1>
+          <h1>Napi jelenlét</h1>
 
           <div className="stat-wrappers">
             {Object.entries(this.groupBy(this.state.appointments, 'pId')).map((pApp, pI) => {

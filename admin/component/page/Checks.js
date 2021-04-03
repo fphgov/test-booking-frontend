@@ -37,6 +37,12 @@ export default class Checks extends React.Component {
     document.body.classList.remove('page-applicants')
   }
 
+  handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      this.getApplicantsData()
+    }
+  }
+
   handleChangeInput(e) {
     this.setState({
       search: e.target.value,
@@ -109,7 +115,7 @@ export default class Checks extends React.Component {
           <h1>Időpont ellenőrzés</h1>
 
           <div className="search-wrapper">
-            <input autoComplete="chrome-off" name="search" value={this.state.search} onChange={this.handleChangeInput.bind(this)} />
+            <input autoComplete="chrome-off" name="search" value={this.state.search} onChange={this.handleChangeInput.bind(this)} onKeyPress={this.handleKeyPress.bind(this)} />
             <button className="btn btn-primary" onClick={this.getApplicantsData.bind(this)}>Keresés</button>
           </div>
 

@@ -38,7 +38,7 @@ export default class Header extends React.Component {
       menu: [
         { title: "Jelentkezettek", href: "/applicants", onHideLoggedOut: true, roles: [ 'developer', 'admin', 'cs' ] },
         { title: "Időpont ellenőrzés", href: "/checks", onHideLoggedOut: true, roles: [ 'developer', 'admin', 'voluntary' ] },
-        { title: "Napi jelenléti", href: "/informations", onHideLoggedOut: true, roles: [ 'developer', 'admin', 'voluntary' ] },
+        { title: "Napi jelenlét", href: "/informations", onHideLoggedOut: true, roles: [ 'developer', 'admin', 'voluntary' ] },
         { title: "Bejelentkezés", href: "/login", onHideLoggedIn: true },
         { title: "Kijelentkezés", href: "/logout", onHideLoggedOut: true },
       ]
