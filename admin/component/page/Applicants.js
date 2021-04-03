@@ -23,8 +23,6 @@ export default class Applicants extends React.Component {
   }
 
   componentDidMount() {
-    this.context.set('loading', false)
-
     if (localStorage.getItem('auth_token') === null) {
       this.setState({
         redirectLogin: true

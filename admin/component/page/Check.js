@@ -183,66 +183,82 @@ export default class Check extends React.Component {
           </div>
 
           <div className="form-wrapper">
-            <div className="input-wrapper">
-              <label htmlFor="lastname">Családnév</label>
-              <input type="text" disabled name="lastname" id="lastname" value={this.state.lastname} />
+            <div className="row">
+              <div className="col-sm-12 col-md-6">
+                <div className="input-wrapper">
+                  <label htmlFor="lastname">Családnév</label>
+                  <input type="text" disabled name="lastname" id="lastname" value={this.state.lastname} />
 
-              {this.state.error && this.state.error.lastname ? Object.values(this.state.error.lastname).map((err, i) => {
-                return <this.ErrorMini key={i} error={err} increment={`lastname-${i}`} />
-              }) : null}
-            </div>
-
-            <div className="input-wrapper">
-              <label htmlFor="humanId">Utónév</label>
-              <input type="text" disabled name="firstname" id="firstname" value={this.state.firstname} />
-
-              {this.state.error && this.state.error.firstname ? Object.values(this.state.error.firstname).map((err, i) => {
-                return <this.ErrorMini key={i} error={err} increment={`firstname-${i}`} />
-              }) : null}
-            </div>
-
-            <div className="input-wrapper">
-              <label htmlFor="appointment">Időpont</label>
-              <input type="text" disabled name="appointment" id="appointment" value={this.state.appointment} />
-
-              {this.state.error && this.state.error.appointment ? Object.values(this.state.error.appointment).map((err, i) => {
-                return <this.ErrorMini key={i} error={err} increment={`appointment-${i}`} />
-              }) : null}
-            </div>
-
-            <div className="input-wrapper">
-              <label htmlFor="location">Helyszín</label>
-              <input type="text" disabled name="location" id="location" value={this.state.location} />
-
-              {this.state.error && this.state.error.location ? Object.values(this.state.error.location).map((err, i) => {
-                return <this.ErrorMini key={i} error={err} increment={`location-${i}`} />
-              }) : null}
-            </div>
-
-            <div className="input-wrapper">
-              <label>
-                Értesítő
-              </label>
-              <div>
-                {this.state.notified ? 'Kiküldve' : '-'}
+                  {this.state.error && this.state.error.lastname ? Object.values(this.state.error.lastname).map((err, i) => {
+                    return <this.ErrorMini key={i} error={err} increment={`lastname-${i}`} />
+                  }) : null}
+                </div>
               </div>
 
-              {this.state.error && this.state.error.notified ? Object.values(this.state.error.notified).map((err, i) => {
-                return <this.ErrorMini key={i} error={err} increment={`notified-${i}`} />
-              }) : null}
-            </div>
+              <div className="col-sm-12 col-md-6">
+                <div className="input-wrapper">
+                  <label htmlFor="humanId">Utónév</label>
+                  <input type="text" disabled name="firstname" id="firstname" value={this.state.firstname} />
 
-            <div className="input-wrapper">
-              <label>
-                Résztvett
-              </label>
-              <div>
-                {this.state.attended ? 'Igen' : 'Nem'}
+                  {this.state.error && this.state.error.firstname ? Object.values(this.state.error.firstname).map((err, i) => {
+                    return <this.ErrorMini key={i} error={err} increment={`firstname-${i}`} />
+                  }) : null}
+                </div>
               </div>
 
-              {this.state.error && this.state.error.attended ? Object.values(this.state.error.attended).map((err, i) => {
-                return <this.ErrorMini key={i} error={err} increment={`attended-${i}`} />
-              }) : null}
+              <div className="col-sm-12 col-md-6">
+                <div className="input-wrapper">
+                  <label htmlFor="appointment">Időpont</label>
+                  <input type="text" disabled name="appointment" id="appointment" value={this.state.appointment} />
+
+                  {this.state.error && this.state.error.appointment ? Object.values(this.state.error.appointment).map((err, i) => {
+                    return <this.ErrorMini key={i} error={err} increment={`appointment-${i}`} />
+                  }) : null}
+                </div>
+              </div>
+
+              <div className="col-sm-12 col-md-6">
+                <div className="input-wrapper">
+                  <label htmlFor="location">Helyszín</label>
+                  <input type="text" disabled name="location" id="location" value={this.state.location} />
+
+                  {this.state.error && this.state.error.location ? Object.values(this.state.error.location).map((err, i) => {
+                    return <this.ErrorMini key={i} error={err} increment={`location-${i}`} />
+                  }) : null}
+                </div>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-3">
+                <div className="input-wrapper">
+                  <label>
+                    Értesítő
+                  </label>
+                  <div>
+                    {this.state.notified ? 'Kiküldve' : '-'}
+                  </div>
+
+                  {this.state.error && this.state.error.notified ? Object.values(this.state.error.notified).map((err, i) => {
+                    return <this.ErrorMini key={i} error={err} increment={`notified-${i}`} />
+                  }) : null}
+                </div>
+              </div>
+
+              <div className="col-3">
+                <div className="input-wrapper">
+                  <label>
+                    Résztvett
+                  </label>
+                  <div>
+                    {this.state.attended ? 'Igen' : 'Nem'}
+                  </div>
+
+                  {this.state.error && this.state.error.attended ? Object.values(this.state.error.attended).map((err, i) => {
+                    return <this.ErrorMini key={i} error={err} increment={`attended-${i}`} />
+                  }) : null}
+                </div>
+              </div>
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
