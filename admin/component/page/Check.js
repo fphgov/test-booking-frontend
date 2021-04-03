@@ -230,7 +230,7 @@ export default class Check extends React.Component {
             </div>
 
             <div className="row">
-              <div className="col-3">
+              <div className="col-md-3">
                 <div className="input-wrapper">
                   <label>
                     Értesítő
@@ -245,7 +245,7 @@ export default class Check extends React.Component {
                 </div>
               </div>
 
-              <div className="col-3">
+              <div className="col-md-3">
                 <div className="input-wrapper">
                   <label>
                     Résztvett

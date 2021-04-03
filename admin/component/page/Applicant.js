@@ -298,7 +298,7 @@ export default class Applicant extends React.Component {
             </div>
 
             <div className="row">
-              <div className="col-3">
+              <div className="col-md-3">
                 <div className="input-wrapper">
                   <label htmlFor="status">
                     Értesítő
@@ -313,7 +313,7 @@ export default class Applicant extends React.Component {
                 </div>
               </div>
 
-              <div className="col-3">
+              <div className="col-md-3">
                 <div className="input-wrapper">
                   <label htmlFor="status">
                     Értesítő újraküldés
