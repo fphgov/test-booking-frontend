@@ -18,16 +18,21 @@ export default class Applicants extends React.Component {
       search: ''
     }
 
+    this.inputRef = React.createRef()
     this.ApplicantsWrapper = this.ApplicantsWrapper.bind(this)
     this.onHandleRemove = this.onHandleRemove.bind(this)
   }
 
   componentDidMount() {
+    this.context.set('loading', false)
+
     if (localStorage.getItem('auth_token') === null) {
       this.setState({
         redirectLogin: true
       })
     }
+
+    this.inputRef.current.focus()
 
     document.body.classList.add('page-applicants')
   }
@@ -115,15 +120,17 @@ export default class Applicants extends React.Component {
     return (
       <div className="col-md-12">
         <div className="applicants-wrapper">
-            <div className="applicants-inner">
-              <div className="article-content">
-                <Link to={`/applicants/${props.applicants.id}`} className="article-flex">
-                  <div className="article-title">
-                    {props.applicants.humanId} | {props.applicants.lastname} {props.applicants.firstname}
-                    </div>
-                </Link>
-              </div>
+          <div className="applicants-inner">
+            <div className="article-content">
+              <Link to={`/applicants/${props.applicants.id}`} className="article-flex">
+                <div className="article-title">
+                  {props.applicants.humanId} | {props.applicants.lastname} {props.applicants.firstname}
+                </div>
+
+                <div className={`article-status article-status-${props.applicants.attended ? 'attended' : 'no-attended'}`} title={props.applicants.attended ? 'Részt vett' : 'Nem vett részt'}></div>
+              </Link>
             </div>
+          </div>
         </div>
       </div>
     )
@@ -142,7 +149,7 @@ export default class Applicants extends React.Component {
           <h1>Jelentkezettek</h1>
 
           <div className="search-wrapper">
-            <input autoComplete="chrome-off" name="search" value={this.state.search} onChange={this.handleChangeInput.bind(this)} onKeyPress={this.handleKeyPress.bind(this)} />
+            <input autoComplete="chrome-off" name="search" autoFocus={true} ref={this.inputRef} value={this.state.search} onChange={this.handleChangeInput.bind(this)} onKeyPress={this.handleKeyPress.bind(this)} />
             <button className="btn btn-primary" onClick={this.getApplicantsData.bind(this)}>Keresés</button>
           </div>
 

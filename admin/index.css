@@ -599,10 +599,21 @@ label+.tipp {
   background-color: #19506e;
   padding: 10px;
   text-transform: uppercase;
+  width: 100%;
 }
 
 .article-flex {
   flex: 1;
+  display: flex;
+}
+
+.article-status {
+  width: 10px;
+  background-color: #fce65d;
+}
+
+.article-status.article-status-attended {
+  background-color: #069e00;
 }
 
 input[name="search"] {
