@@ -6,7 +6,7 @@ import {
 } from "react-router-dom"
 import StoreContext from '../../StoreContext'
 
-export default class Applicants extends React.Component {
+export default class Checks extends React.Component {
   static contextType = StoreContext
 
   constructor(props, context) {
@@ -20,7 +20,6 @@ export default class Applicants extends React.Component {
 
     this.inputRef = React.createRef()
     this.ApplicantsWrapper = this.ApplicantsWrapper.bind(this)
-    this.onHandleRemove = this.onHandleRemove.bind(this)
   }
 
   componentDidMount() {
@@ -66,7 +65,7 @@ export default class Applicants extends React.Component {
 
     this.context.set('loading', true)
 
-    axios.get(process.env.REACT_APP_API_ADMIN_SERVER + process.env.REACT_APP_API_ADMIN_REQ_APPLICANTS + link, config)
+    axios.get(process.env.REACT_APP_API_ADMIN_SERVER + process.env.REACT_APP_API_ADMIN_REQ_CHECKS + link, config)
       .then(response => {
         if (response.data && Array.isArray(response.data.data)) {
           this.setState({
@@ -81,36 +80,8 @@ export default class Applicants extends React.Component {
 
         if (error.response && error.response.data && error.response.data.message) {
           this.setState({
-            error: error.response.data.message
-          })
-        }
-      })
-  }
-
-  onHandleRemove(e) {
-    const id = e.target.getAttribute('data-id')
-
-    const config = {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('auth_token')}`,
-        'Accept': 'application/json',
-      }
-    }
-
-    const link = process.env.REACT_APP_API_ADMIN_REQ_APPLICANT.toString().replace(':id', id)
-
-    axios.delete(process.env.REACT_APP_API_ADMIN_SERVER + link, config)
-      .then(response => {
-        if (response.data && response.data.success) {
-          this.context.set('loading', false)
-
-          this.getApplicantsData()
-        }
-      })
-      .catch(error => {
-        if (error.response && error.response.data && error.response.data.message) {
-          this.setState({
-            error: error.response.data.message
+            error: error.response.data.message,
+            applicants: []
           })
         }
       })
@@ -122,7 +93,7 @@ export default class Applicants extends React.Component {
         <div className="applicants-wrapper">
           <div className="applicants-inner">
             <div className="article-content">
-              <Link to={`/applicants/${props.applicants.id}`} className="article-flex">
+              <Link to={`/checks/${props.applicants.humanId}`} className="article-flex">
                 <div className="article-title">
                   {props.applicants.humanId} | {props.applicants.lastname} {props.applicants.firstname}
                 </div>
@@ -146,7 +117,7 @@ export default class Applicants extends React.Component {
     return (
       <div className="applicants">
         <div className="container">
-          <h1>Jelentkezettek</h1>
+          <h1>Időpont ellenőrzés</h1>
 
           <div className="search-wrapper">
             <input autoComplete="chrome-off" name="search" autoFocus={true} ref={this.inputRef} value={this.state.search} onChange={this.handleChangeInput.bind(this)} onKeyPress={this.handleKeyPress.bind(this)} />

@@ -8,10 +8,6 @@ import "normalize";
 import "grid";
 import StoreContext from './StoreContext'
 import Loading from './component/common/Loading'
-import '@fortawesome/fontawesome-free/js/fontawesome'
-import '@fortawesome/fontawesome-free/js/solid'
-import '@fortawesome/fontawesome-free/js/regular'
-import '@fortawesome/fontawesome-free/js/brands'
 
 class AppWithContext extends React.Component {
   constructor(props) {

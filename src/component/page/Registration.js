@@ -98,7 +98,9 @@ export default class Registration extends React.Component {
         if (response.data) {
           this.setState({
             miniCalanedarLoading: false,
-            flatpickrDates: response.data.data
+            flatpickrDates: response.data.data,
+            appointments: null,
+            date: null,
           })
         }
       })
@@ -122,6 +124,12 @@ export default class Registration extends React.Component {
         if (response.data && response.data.data) {
           this.setState({
             appointments: response.data.data,
+          }, () => {
+            if (document.querySelector('a.appointment-elem.active.locked') && typeof document.documentElement.scrollIntoViewIfNeeded !== "undefined") {
+              document.querySelector('a.appointment-elem.active.locked').scrollIntoViewIfNeeded()
+            } else if (document.querySelector('a.appointment-elem.active.locked') && typeof document.documentElement.scrollIntoView !== "undefined") {
+              document.querySelector('a.appointment-elem.active.locked').scrollIntoView()
+            }
           })
 
           this.setState({
@@ -519,14 +527,14 @@ export default class Registration extends React.Component {
                               <div className="flatpickr-extend">
                                 {Array.isArray(this.state.appointments) && this.state.appointments.length === 0 && !this.state.miniLoading ? 'Nincs elérhető időpont' : null}
                                 {Array.isArray(this.state.appointments) ? this.state.appointments.map((appointment, i) => {
-                                  const date = new Date(appointment.date.date.replace(/ /g, 'T'))
+                                  const date = new Date(appointment.date.date.replace(/ /g, 'T') + 'Z')
                                   const plusDate = new Date(date.getTime() + 10 * 60000)
 
                                   return (
                                     <a key={i} className={`appointment-elem${this.state.appointment === appointment.id ? ' active' : ''}${appointment.expiry ? ' locked' : ''}`} onClick={() => this.handleTimeReservation(appointment)}>
                                       <div className="appointment-elem-name">Gyorsteszt {appointment.expiry !== null ? (<div className="lock"><Block /></div>) : null}</div>
-                                      <div className="appointment-elem-time">{date.getHours()}.{date.getMinutes().toString().padStart(2, '0')} - {plusDate.getHours().toString().padStart(2, '0')}.{(plusDate.getMinutes()).toString().padStart(2, '0')}</div>
-                                      <div className="appointment-elem-date">{date.getFullYear()}.{(date.getMonth() + 1).toString().padStart(2, '0')}.{date.getDate().toString().padStart(2, '0')}</div>
+                                      <div className="appointment-elem-time">{date.getUTCHours()}.{date.getUTCMinutes().toString().padStart(2, '0')} - {plusDate.getUTCHours().toString().padStart(2, '0')}.{(plusDate.getUTCMinutes()).toString().padStart(2, '0')}</div>
+                                      <div className="appointment-elem-date">{date.getUTCFullYear()}.{(date.getUTCMonth() + 1).toString().padStart(2, '0')}.{date.getUTCDate().toString().padStart(2, '0')}</div>
                                     </a>
                                   )
                                 }) : null}

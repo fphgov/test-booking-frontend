@@ -1001,6 +1001,7 @@ span.flatpickr-weekday {
   text-align: center;
   height: 300px;
   overflow: auto;
+  scroll-behavior: smooth;
 }
 
 .appointment-elem {
@@ -1092,7 +1093,7 @@ a.light.inline {
 		width: 240px;
 		margin-top: 4px;
   }
-  
+
   .footer-logo-wrapper {
     width: 240px;
     margin-right: 10px;
