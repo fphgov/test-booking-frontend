@@ -35,7 +35,7 @@
   "dependencies": {
     "@types/react": "^16.14.2",
     "@types/react-dom": "^16.9.10",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "babel-polyfill": "^6.26.0",
     "bootstrap-4-grid": "^3.4.0",
     "draft-js": "^0.11.7",
